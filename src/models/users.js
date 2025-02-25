@@ -1,3 +1,5 @@
+const uuid = require("uuid").v4
+
 const users = [
   {
     id: 1,
@@ -12,6 +14,12 @@ const users = [
     password: "12",
   },
 ];
+
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
 module.exports = {
   getAllUsers: () => {
     return users;
@@ -36,6 +44,28 @@ module.exports = {
 //     return newUser
 //   },
   createUser: (name,email,password)=>{
-    
+    if (!name || !email || !password) {
+        throw new Error("Todos os campos (nome, email, senha) são obrigatórios.");
+      }
+  
+      if (!isValidEmail(email)) {
+        throw new Error("Email inválido.");
+      }
+  
+      if (password.length < 6) {
+        throw new Error("A senha deve ter pelo menos 6 caracteres.");
+      }
+  
+      const userAlreadyRegistered = users.find((user) => user.email === email);
+      if (userAlreadyRegistered) return null;
+    const newUser = {
+        id: uuid(),
+        name,
+        email,
+        password,
+        role: "standart"
+    }
+    users.push(newUser);
+    return newUser
   },
 };
