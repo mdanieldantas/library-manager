@@ -20,19 +20,22 @@ module.exports = {
     return users.find((user) => user.id === id);
   },
   getUserByEmail: (email) => {
-    return users.find((user) => user.email === email);
+    return users.find(user => user.email === email);
   },
-  registerUser: (name, email, password) => {
-    const userAlreadyRegistered = users.find((user) => user.email === email);
-    if (userAlreadyRegistered) return null;
-    const newUser = {
-        id: Math.floor(Math.random() * 9999999).toString(),
-        name,
-        email,
-        password,
-        role: "standart"
-    }
-    users.push(newUser);
-    return newUser
+//   registerUser: (name, email, password) => {
+//     const userAlreadyRegistered = users.find(user => user.email === email);
+//     if (userAlreadyRegistered) return null;
+//     const newUser = {
+//         id: Math.floor(Math.random() * 9999999).toString(),
+//         name,
+//         email,
+//         password,
+//         role: "standart"
+//     }
+//     users.push(newUser);
+//     return newUser
+//   },
+  createUser: (name,email,password)=>{
+    
   },
 };
