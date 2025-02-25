@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1740516833602" clover="3.2.0">
-  <project timestamp="1740516833603" name="All files">
-    <metrics statements="20" coveredstatements="20" conditionals="11" coveredconditionals="11" methods="8" coveredmethods="8" elements="39" coveredelements="39" complexity="0" loc="20" ncloc="20" packages="1" files="1" classes="1"/>
-    <file name="users.js" path="C:\DevRepo\library-manager\src\models\users.js">
-      <metrics statements="20" coveredstatements="20" conditionals="11" coveredconditionals="11" methods="8" coveredmethods="8"/>
-      <line num="1" count="1" type="stmt"/>
-      <line num="3" count="1" type="stmt"/>
-      <line num="18" count="1" type="stmt"/>
-      <line num="19" count="4" type="stmt"/>
-      <line num="20" count="4" type="stmt"/>
-      <line num="23" count="1" type="stmt"/>
-      <line num="25" count="3" type="stmt"/>
-      <line num="28" count="1" type="stmt"/>
-      <line num="31" count="2" type="stmt"/>
-      <line num="47" count="7" type="cond" truecount="5" falsecount="0"/>
-      <line num="48" count="3" type="stmt"/>
-      <line num="51" count="4" type="cond" truecount="2" falsecount="0"/>
-      <line num="52" count="1" type="stmt"/>
-      <line num="55" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="56" count="1" type="stmt"/>
-      <line num="59" count="3" type="stmt"/>
-      <line num="60" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="61" count="1" type="stmt"/>
-      <line num="68" count="1" type="stmt"/>
-      <line num="69" count="1" type="stmt"/>
-    </file>
+<coverage generated="1740523647983" clover="3.2.0">
+  <project timestamp="1740523647983" name="All files">
+    <metrics statements="25" coveredstatements="23" conditionals="9" coveredconditionals="9" methods="10" coveredmethods="7" elements="44" coveredelements="39" complexity="0" loc="25" ncloc="25" packages="2" files="2" classes="2"/>
+    <package name="controllers">
+      <metrics statements="15" coveredstatements="13" conditionals="9" coveredconditionals="9" methods="4" coveredmethods="1"/>
+      <file name="auth-controller.js" path="C:\DevRepo\library-manager\src\controllers\auth-controller.js">
+        <metrics statements="15" coveredstatements="13" conditionals="9" coveredconditionals="9" methods="4" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="13" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="23" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="models">
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+      <file name="users-model.js" path="C:\DevRepo\library-manager\src\models\users-model.js">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

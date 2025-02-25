@@ -1,65 +1,50 @@
-const { getAllUsers, getUserById, getUserByEmail, createUser } = require('./users');
+const usersModel = require('./users-model');
+const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 
-test('getAllUsers deve retornar todos os usuários', () => {
-    const users = getAllUsers();
-    expect(users.length).toBe(2);
-    expect(users[0].name).toBe('John Doe');
-    expect(users[1].name).toBe('Jane Doe');
-});
+jest.mock('bcrypt');
+jest.mock('uuid');
 
-test('getUserById deve retornar o usuário correto pelo ID', () => {
-    const user = getUserById(1);
-    expect(user).toBeDefined();
-    expect(user.name).toBe('John Doe');
-});
+describe('Users Model', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-test('getUserByEmail deve retornar o usuário correto pelo email', () => {
-    const user = getUserByEmail('U0E5G@example.com');
-    expect(user).toBeDefined();
-    expect(user.name).toBe('Jane Doe');
-});
+  it('deve retornar todos os usuários', () => {
+    const users = usersModel.getAllUsers();
+    expect(users).toHaveLength(2);
+  });
 
-test('createUser deve adicionar um novo usuário', () => {
-    const newUser = {
-        name: 'Alice Doe',
-        email: 'alice@example.com',
-        password: '123456'
-    };
-    const createdUser = createUser(newUser.name, newUser.email, newUser.password);
-    expect(createdUser).toBeDefined();
-    expect(createdUser.name).toBe(newUser.name);
-    expect(createdUser.email).toBe(newUser.email);
-    expect(createdUser.password).toBe(newUser.password);
-    expect(createdUser.role).toBe('standart');
+  it('deve retornar um usuário pelo ID', () => {
+    const user = usersModel.getUserById('1');
+    expect(user).toEqual({
+      id: '1',
+      name: 'Isaac Pontes',
+      email: 'isaac@email.com',
+      password: '123456'
+    });
+  });
 
-    const users = getAllUsers();
-    expect(users.length).toBe(3);
-    expect(users[2].name).toBe('Alice Doe');
-});
+  it('deve retornar um usuário pelo email', () => {
+    const user = usersModel.getUserByEmail('isaac@email.com');
+    expect(user).toEqual({
+      id: '1',
+      name: 'Isaac Pontes',
+      email: 'isaac@email.com',
+      password: '123456'
+    });
+  });
 
-test('createUser não deve adicionar um usuário com email duplicado', () => {
-    const duplicateUser = {
-        name: 'John Smith',
-        email: 'U0E4G@example.com',
-        password: '123456'
-    };
-    const createdUser = createUser(duplicateUser.name, duplicateUser.email, duplicateUser.password);
-    expect(createdUser).toBeNull();
+  it('deve criar um novo usuário', () => {
+    uuid.v4.mockReturnValue('3');
+    bcrypt.hashSync.mockReturnValue('hashedpassword');
 
-    const users = getAllUsers();
-    expect(users.length).toBe(3); // Ainda deve ser 3, pois o usuário duplicado não foi adicionado
-});
-
-test('createUser deve lançar um erro se algum campo obrigatório estiver faltando', () => {
-    expect(() => createUser('', 'missing@example.com', '123456')).toThrow("Todos os campos (nome, email, senha) são obrigatórios.");
-    expect(() => createUser('Missing Email', '', '123456')).toThrow("Todos os campos (nome, email, senha) são obrigatórios.");
-    expect(() => createUser('Missing Password', 'missing@example.com', '')).toThrow("Todos os campos (nome, email, senha) são obrigatórios.");
-});
-
-test('createUser deve lançar um erro se o email for inválido', () => {
-    expect(() => createUser('Invalid Email', 'invalid-email', '123456')).toThrow("Email inválido.");
-});
-
-test('createUser deve lançar um erro se a senha for muito curta', () => {
-    expect(() => createUser('Short Password', 'short@example.com', '123')).toThrow("A senha deve ter pelo menos 6 caracteres.");
+    const newUser = usersModel.createUser('New User', 'newuser@example.com', 'password123');
+    expect(newUser).toEqual({
+      id: '3',
+      name: 'New User',
+      email: 'newuser@example.com',
+      password: 'hashedpassword'
+    });
+  });
 });
