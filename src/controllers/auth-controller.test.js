@@ -44,14 +44,14 @@ describe('Auth Controller - Register', () => {
     expect(response.body.message).toBe('E-mail já cadastrado!');
   });
 
-//   it('deve retornar 400 se o email for inválido', async () => {
-//     const response = await request(app)
-//       .post('/auth/register')
-//       .send({ name: 'Test User', email: 'invalid-email', password: '123456' });
+  it('deve retornar 400 se o email for inválido', async () => {
+    const response = await request(app)
+      .post('/auth/register')
+      .send({ name: 'Test User', email: 'invalid-email', password: '123456' });
 
-//     expect(response.status).toBe(400);
-//     expect(response.body.message).toBe('Email inválido.');
-//   });
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe('Email inválido.');
+  });
 
   it('deve retornar 201 e criar um novo usuário se os dados forem válidos', async () => {
     usersModel.getUserByEmail.mockReturnValue(null);
