@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Livros por Autor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-container form {
+            display: flex;
+            gap: 10px;
+        }
+        .search-container input {
+            flex: 1;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-container button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+        .results {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .book-card {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+        }
+        .no-results {
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Busca de Livros por Autor</h1>
+    
+    <div class="search-container">
+        <form id="searchForm">
+            <input 
+                type="text" 
+                id="authorInput" 
+                placeholder="Digite o nome do autor..."
+                required
+            >
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    
+    <div class="results" id="resultsContainer">
+        <p>Digite o nome de um autor para buscar livros.</p>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const authorName = document.getElementById('authorInput').value.trim();
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            if (!authorName) {
+                resultsContainer.innerHTML = '<p class="no-results">Por favor, digite o nome de um autor.</p>';
+                return;
+            }
+            
+            resultsContainer.innerHTML = '<p>Buscando livros...</p>';
+            
+            try {
+                console.log('Iniciando busca para:', authorName);
+                const response = await fetch(`http://localhost:3001/api/books/search?author=${encodeURIComponent(authorName)}`);
+                
+                console.log('Status da resposta:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Erro da API:', errorText);
+                    throw new Error(`Erro ${response.status}: ${errorText}`);
+                }
+                
+                const books = await response.json();
+                
+                if (books.length === 0) {
+                    resultsContainer.innerHTML = '<p class="no-results">Nenhum livro encontrado para este autor.</p>';
+                    return;
+                }
+                
+                // Formatar e exibir os resultados
+                let resultsHTML = `<h2>Livros de "${authorName}"</h2>`;
+                
+                books.forEach(book => {
+                    resultsHTML += `
+                        <div class="book-card">
+                            <h3>${book.title}</h3>
+                            <p><strong>Autor:</strong> ${book.author}</p>
+                            <p><strong>ID:</strong> ${book.id}</p>
+                            <p><strong>Quantidade disponível:</strong> ${book.quantiteAvailable}</p>
+                        </div>
+                    `;
+                });
+                
+                resultsContainer.innerHTML = resultsHTML;
+                
+            } catch (error) {
+                console.error('Erro detalhado:', error);
+                resultsContainer.innerHTML = `<p class="no-results">Erro ao buscar livros: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
