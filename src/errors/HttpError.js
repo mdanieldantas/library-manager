@@ -1,5 +1,5 @@
 module.exports = class HttpError extends Error {
-  constructor(status, mensage) {
+  constructor(status, message) {
     super(message)
     this.status = status
   }

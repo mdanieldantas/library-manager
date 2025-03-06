@@ -44,7 +44,7 @@ module.exports = {
   login: (req, res) => {
     const { email, password } = req.body;
     if (typeof email !== "string" || typeof password !== "string")
-      throw new HttpError(404, "Todos os campos são obrigatórios");
+      throw new HttpError(400, "Todos os campos são obrigatórios");
 
     if (!isValidEmail(email)) {
       return res.status(400).json({ message: "Email inválido." });
