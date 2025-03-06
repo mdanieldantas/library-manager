@@ -1,6 +1,7 @@
 const usersModel = require("../models/users-model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const HttpError = require("../errors/HttpError");
 
 const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,7 +44,7 @@ module.exports = {
   login: (req, res) => {
     const { email, password } = req.body;
     if (typeof email !== "string" || typeof password !== "string")
-      return res.status(400).json({ message: "Dados invalidos!" });
+      throw new HttpError(404, "Todos os campos são obrigatórios");
 
     if (!isValidEmail(email)) {
       return res.status(400).json({ message: "Email inválido." });

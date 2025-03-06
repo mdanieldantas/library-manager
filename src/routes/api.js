@@ -4,6 +4,8 @@ const express = require("express");
 const apiRouter = express.Router();
 const booksController = require("../controllers/books-controller");
 
+// GET
+
 // Rotas específicas primeiro
 apiRouter.get("/books/search", booksController.findByAuthor); // busca por autor usando query params
 // Então rotas com parâmetros
@@ -12,9 +14,17 @@ apiRouter.get("/books/:id", booksController.show); // busca por id
 apiRouter.get("/books", booksController.index); // busca todos os livros
 // Em routes/api.js
 
-//POST
+// POST
 
 apiRouter.post("/books/search/author", booksController.searchByRequestBody); // busca por autor usando corpo da requisição
+apiRouter.post("/books", booksController.save); // cria um novo livro
+
+// PUT
+apiRouter.put("/books/:id", booksController.update); // atualiza um livro
+
+//DELETE
+apiRouter.delete("/books/:id", booksController.delete); // deleta um livro
+
 
 module.exports = apiRouter;
 

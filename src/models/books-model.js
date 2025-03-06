@@ -1,3 +1,5 @@
+const HttpError = require("../errors/HttpError");
+
 const uuid = require("uuid").v4;
 
 let books = [
@@ -47,7 +49,7 @@ module.exports = {
   updateBook: (id, updateBook) => {
     // findindex procura o primeiro elemento passado na callback no caso o ID do objeto book
     const bookIndex = books.findIndex((book) => book.id === id);
-    if (bookIndex === -1) throw new Error("livro não encontrado");
+    if (bookIndex === -1) throw new HttpError(404,"livro não encontrado");
     // pega o obejeto book na posição do index e atribui a ele um novo obejto com as propriedades do livro antigo e as novas propriedades
     books[bookIndex] = {
       // usa o operador de espalhamento para copiar as propriedades do objeto book antigo na posição index, e depois copia as propriedades do objeto updateBook
@@ -62,7 +64,7 @@ module.exports = {
     // findindex procura o primeiro elemento passado na callback no caso o ID do objeto book
     const bookIndex = books.findIndex((book) => book.id === id);
     // se o index for -1 significa que o livro não foi encontrado
-    if (bookIndex === -1) throw new Error("livro não encontrado");
+    if (bookIndex === -1) throw new HttpError(404,"livro não encontrado");
     // a variavel deleteBook recebe o objeto book na posição do index
     const deleteBook = books[bookIndex];
     // a variavel de objetos books recebe um novo array com todos os objetos que não tem o id igual ao id passado
@@ -71,18 +73,4 @@ module.exports = {
     return deleteBook;
   },
 
-// deleteBook: (id) => {
-//     // findindex procura o primeiro elemento passado na callback no caso o ID do objeto book
-//     const bookIndex = books.findIndex((book) => book.id === id);
-//     // se o index for -1 significa que o livro não foi encontrado
-//     if (bookIndex === -1) throw new Error("livro não encontrado");
-//     // a variavel deleteBook recebe o objeto book na posição do index
-//     const deleteBook = books[bookIndex];
-//     // remove o livro da lista usando splice
-//     books.splice(bookIndex, 1);
-//     // retorna o livro deletado
-//     return deleteBook;
-//   },
-
 };
- 
