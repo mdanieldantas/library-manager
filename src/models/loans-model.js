@@ -3,24 +3,24 @@ const booksModel = require("./books-model");
 
 const uuid = require("uuid").v4;
 
-const loans = {
-  1: {
-    id: 1,
-    userId: 1,
-    bookId: 1,
-    loanDate: new Date("2024-01-01"),
-    returnDate: null,
-    isReturned: false,
-    isLate: true,
-  },
-};
+let loans = [
+    {
+      id: "1",
+      userId: "1",
+      bookId: "1",
+      loanDate: new Date("2024-01-01"),
+      returnDate: null,
+      isReturned: false,
+      isLate: true,
+    },
+  ];
 
 module.exports = {
   getAllLoans: () => loans,
 
-  getLoansById: (id) => loans.find((loan) => loan.id === id),
+  getLoanById: (id) => loans.find(loan => loan.id === id),
 
-  getLoansByUserId: (userId) => loans.filter((loan) => loan.userId === userId),
+//   getLoansByUserId: (userId) => loans.filter(loan => loan.userId === userId),
 
   createLoan: (user, book) => {
     if (book.quantiteAvailable > 0)

@@ -3,6 +3,7 @@
 const express = require("express");
 const apiRouter = express.Router();
 const booksController = require("../controllers/books-controller");
+const loansController = require("../controllers/loans-controller");
 
 // GET
 
@@ -25,6 +26,10 @@ apiRouter.put("/books/:id", booksController.update); // atualiza um livro
 //DELETE
 apiRouter.delete("/books/:id", booksController.delete); // deleta um livro
 
+
+apiRouter.get("/loans", loansController.index); // busca todos os emprestimos   
+
+apiRouter.get("/loans/:id",loansController.show); // busca um emprestimo por id
 
 module.exports = apiRouter;
 

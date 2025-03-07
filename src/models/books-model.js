@@ -8,6 +8,7 @@ let books = [
     title: "Book one",
     author: "Author one",
     quantiteAvailable: 4,
+    
   },
   {
     id: "2",
