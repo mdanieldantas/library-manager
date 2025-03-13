@@ -1,138 +1,155 @@
 # 📚 Library Manager
 
-## Descrição
-O **Library Manager** é um projeto prático de estudos em **Backend** que tem como objetivo gerenciar usuários e autenticação em uma aplicação web. O projeto foi desenvolvido para aprimorar habilidades em Node.js, Express, autenticação com JWT (JSON Web Tokens), e testes automatizados com Jest e Supertest. Ele serve como uma base para entender conceitos como rotas, middlewares, models, e integração de bibliotecas externas.
+## Description
+The **Library Manager** is a practical study project focused on **Backend** development, aiming to manage users, books, and loans in a web application. The project was developed to enhance skills in Node.js, Express, JWT (JSON Web Tokens) authentication, and automated testing with Jest and Supertest. It serves as a foundation to understand concepts such as routes, middlewares, models, and integration of external libraries.
+
+---
+<!-- 
+## 🔗 Online Link
+The project is available on GitHub:  
+[**https://github.com/mdanieldantas/library-manager.git**](https://github.com/mdanieldantas/library-manager.git) -->
 
 ---
 
-## 🔗 Link Online
-O projeto está disponível no repositório do GitHub:  
-[**https://github.com/mdanieldantas/library-manager.git**](https://github.com/mdanieldantas/library-manager.git)
+## 🖼️ Project Images
+![Project](./src/assets/images/1image.png)
+![Project](./src/assets/images/2image.png)
 
 ---
 
-## 🖼️ Imagens do Projeto
-![Projeto](./src/assets/images/1image.png)
-![Projeto](./src/assets/images/2image.png)
-<!-- 🔲 **Placeholder para imagem da tela de login**  
-🔲 **Placeholder para imagem da tela de registro**  
-🔲 **Placeholder para imagem dos testes automatizados** -->
+## 🚀 Features
+- **🔐 User Authentication**: Registration and login with JWT.
+- **🔒 Route Protection**: Middleware to ensure only authenticated users can access specific routes.
+- **📚 Book Management**: Create, read, update, and delete books.
+- **📖 Loan Management**: Borrow and return books by authenticated users.
+- **🧪 Automated Testing**: Integration and unit tests with Jest and Supertest.
+- **⚙️ Environment Variables**: Use of `.env` for sensitive configurations.
 
 ---
 
-## 🚀 Funcionalidades
-- **🔐 Autenticação de usuários**: Registro e login com JWT.
-- **🔒 Proteção de rotas**: Middleware para garantir que apenas usuários autenticados possam acessar determinadas rotas.
-- **🛠️ Gerenciamento de usuários**: Criação e consulta de usuários.
-- **🧪 Testes automatizados**: Testes de integração e unitários com Jest e Supertest.
-- **⚙️ Variáveis de ambiente**: Uso de `.env` para configurações sensíveis.
+## 🛠️ Technologies Used
+- **Node.js**: JavaScript runtime environment.
+- **Express**: Framework for building APIs.
+- **JWT (JSON Web Tokens)**: Secure authentication.
+- **Bcrypt**: Password encryption.
+- **UUID**: Unique ID generation.
+- **Dotenv**: Environment variable management.
+- **Nodemon**: Automatic server restart during development.
+- **Jest**: Testing framework.
+- **Supertest**: API integration testing.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
-- **Node.js**: Ambiente de execução JavaScript.
-- **Express**: Framework para construção de APIs.
-- **JWT (JSON Web Tokens)**: Autenticação segura.
-- **Bcrypt**: Criptografia de senhas.
-- **UUID**: Geração de IDs únicos.
-- **Dotenv**: Gerenciamento de variáveis de ambiente.
-- **Nodemon**: Reinicialização automática do servidor durante o desenvolvimento.
-- **Jest**: Framework de testes.
-- **Supertest**: Testes de integração para APIs.
+## 🏃‍♂️ How to Run the Project
 
----
+### Prerequisites
+- Node.js installed (version 16 or higher).
+- NPM or Yarn for dependency management.
 
-## 🏃‍♂️ Como Executar o Projeto
-
-### Pré-requisitos
-- Node.js instalado (versão 16 ou superior).
-- NPM ou Yarn para gerenciamento de dependências.
-
-### Passos para execução
-1. **Clone o repositório**:
+### Steps to Run
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/mdanieldantas/library-manager.git
    cd library-manager
    ```
 
-2. **Instale as dependências**:
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-3. **Configure as variáveis de ambiente**:
-   Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
+3. **Configure environment variables**:
+   Create a `.env` file in the project root and add the following variables:
    ```env
    PORT=3000
    JWT_KEY=a-very-secure-secret-key
    ```
 
-4. **Execute o projeto**:
+4. **Run the project**:
    ```bash
    npm run dev
    ```
 
-5. **Execute os testes**:
+5. **Run tests**:
    ```bash
    npm test
    ```
 
 ---
 
-## 📂 Estrutura do Projeto
+## 📂 Project Structure
 ```
 library-manager/
+├── coverage/
+├── front-test/
+├── search-form-author.html
+├── node_modules/
 ├── src/
+│   ├── assets/
 │   ├── controllers/
-│   │   └── auth-controller.js
+│   │   ├── auth-controller.js
+│   │   ├── auth-controller.test.js
+│   │   ├── books-controller.js
+│   │   └── loans-controller.js
+│   ├── errors/
+│   │   └── HttpError.js
 │   ├── middlewares/
-│   │   └── auth-middleware.js
+│   │   ├── auth-middleware.js
+│   │   └── error-middleware.js
 │   ├── models/
+│   │   ├── books-model.js
+│   │   ├── books-model.test.js
+│   │   ├── loans-model.js
+│   │   ├── user.test.js
 │   │   └── users-model.js
 │   ├── routes/
-│   │   └── auth.js
+│   │   ├── api.js
+│   │   ├── auth.js
+│   │   └── index.js
 │   └── index.js
-├── tests/
-│   └── auth.test.js
 ├── .env
 ├── .gitignore
+├── jest.config.js
+├── package-lock.json
 ├── package.json
 └── README.md
 ```
 
 ---
 
-## 📚 Aprendizados
-- **Autenticação com JWT**: Como implementar um sistema seguro de autenticação.
-- **Middlewares**: Como criar e usar middlewares para proteger rotas.
-- **Testes automatizados**: Como escrever testes de integração e unitários com Jest e Supertest.
-- **Variáveis de ambiente**: Como gerenciar configurações sensíveis com `.env`.
-- **Gerenciamento de dependências**: Como estruturar um projeto Node.js com Express.
+## 📚 Learnings
+- **JWT Authentication**: How to implement a secure authentication system.
+- **Middlewares**: How to create and use middlewares to protect routes.
+- **Book and Loan Management**: How to implement CRUD for books and loans.
+- **Automated Testing**: How to write integration and unit tests with Jest and Supertest.
+- **Environment Variables**: How to manage sensitive configurations with `.env`.
+- **Dependency Management**: How to structure a Node.js project with Express.
 
 ---
 
-## 🤝 Contribuições
-Contribuições são bem-vindas! Siga os passos abaixo:
-1. Faça um fork do projeto.
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`).
-4. Push para a branch (`git push origin feature/nova-feature`).
-5. Abra um Pull Request.
+## 🤝 Contributions
+Contributions are welcome! Follow the steps below:
+1. Fork the project.
+2. Create a branch for your feature (`git checkout -b feature/new-feature`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature/new-feature`).
+5. Open a Pull Request.
 
 ---
 
-## 📜 Licença
-Este projeto está licenciado sob a licença **ISC**. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+## 📜 License
+This project is licensed under the **ISC License**. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📞 Contato
+## 📞 Contact
 
 **M Daniel Dantas**
 
 - **GitHub:** [mdanieldantas](https://github.com/mdanieldantas)
 - **LinkedIn:** [mdanieldantas](https://www.linkedin.com/in/mdanieldantas)
-- **Portfólio:** [Portfólio de Daniel Dantas](https://danieldantasdev.vercel.app)
+- **Portfolio:** [Daniel Dantas Portfolio](https://danieldantasdev.vercel.app)
 - **Email:** [contatomarcosdgomes@gmail.com](mailto:contatomarcosdgomes@gmail.com)
-- **Currículo:** [Baixar Currículo](https://docs.google.com/document/d/1_FpPYPXiifH1B3BDWnJuNk05DQfddCOBqFxyT6Citg4/edit?usp=sharing)
+- **Resume:** [Download Resume](https://docs.google.com/document/d/1_FpPYPXiifH1B3BDWnJuNk05DQfddCOBqFxyT6Citg4/edit?usp=sharing)
 
+---
