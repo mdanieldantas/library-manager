@@ -12,7 +12,7 @@ const { ensureAuth } = require("../middlewares/auth-middleware");
 apiRouter.get("/books/search", booksController.findByAuthor); // busca por autor usando query params
 // Então rotas com parâmetros
 apiRouter.get("/books/:id", booksController.show); // busca por id
-// Por último, rotas gerais
+// Por último, rotas gerais.
 apiRouter.get("/books", booksController.index); // busca todos os livros
 // Em routes/api.js
 
