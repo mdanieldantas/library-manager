@@ -34,8 +34,13 @@ res.json(loan)
    res.status(201).json(newLoan)
  },
 
- // POST   /api/loans/:id/return ---devolve um emprestimo 
+  // POST /api/loans/:id/return
+  return: (req, res) => {
+   const { id } =req.params
+  const loan = loansModel.returnLoan(id)
+   res.json(loan)
 
+ }
 
 
 }

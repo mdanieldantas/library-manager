@@ -34,6 +34,9 @@ apiRouter.get("/loans/:id",loansController.show); // busca um emprestimo por id
 
 apiRouter.post("/loans", ensureAuth, loansController.save); // cria um novo emprestimo
 
+apiRouter.post("/loans/:id/return", loansController.return); // devolve um emprestimo
+
+
 module.exports = apiRouter;
 
 
