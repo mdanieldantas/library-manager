@@ -23,7 +23,7 @@ module.exports = {
 //   getLoansByUserId: (userId) => loans.filter(loan => loan.userId === userId),
 
   createLoan: (user, book) => {
-    if (book.quantiteAvailable > 0)
+    if (book.quantiteAvailable <= 0)
       throw new HttpError(400, "Não há exemplares disponíveis para emprestar");
 
     const today = new Date();
